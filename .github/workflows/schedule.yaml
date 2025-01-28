@@ -1,18 +1,13 @@
-name: Scheduled Workflow
-
-on:
-  schedule:
-    - cron: '* * * * *' # Runs at midnight every day
+name: Example Workflow for env
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      environment: "dev"
+      TEST_VAR: "Hello World"
     steps:
-    - name: Checkout Repository
+    - name: Check out repository code
       uses: actions/checkout@v2
-
-    - name: Run a Script
-      run: echo "Performing $environment task at $(date)."
-
+    - name: Print Environment Variable
+      run: echo $TEST_VAR
